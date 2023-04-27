@@ -1,0 +1,49 @@
+<h1>PoC chek upload img</h1>
+<h5 style="margin-left:2em">Allowed Types: {{ allowedType }}</h5>
+<h5 style="margin-left:2em">Max bites: {{ maxMb }}</h5>
+<br />
+<input
+  type="file"
+  #coverFilesInput
+  (change)="onChange($event)"
+  class="file-input"
+/>
+
+<ng-container *ngIf="uploadSuccess">
+  <table>
+    <tr>
+      <td>
+        Size :
+        <ul>
+          <li>{{ size }} bytes</li>
+          <li>{{ size / 1024 }} Kb</li>
+          <li>{{ size / 1024 / 1000 }} Mb</li>
+        </ul>
+      </td>
+      <td>
+        <span *ngIf="errorMb" style="color:red">File too large</span>
+        <span *ngIf="!errorMb" style="color:green">OK</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Type : {{ type }}</td>
+      <td>
+        <span *ngIf="errorType" style="color:red">Type not allowed</span>
+        <span *ngIf="!errorType" style="color:green">OK</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        The image size is :
+        <ul>
+          <li>h {{ height }}px</li>
+          <li>w {{ width }}px</li>
+        </ul>
+      </td>
+      <td>
+        <span *ngIf="errorSize" style="color:orange">File not squared</span>
+        <span *ngIf="!errorSize" style="color:green">OK</span>
+      </td>
+    </tr>
+  </table>
+</ng-container>
